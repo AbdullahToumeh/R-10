@@ -4,6 +4,7 @@ import { addFave, getFave, removeFave } from '../../config/models'
 const FavesContext = createContext()
 
 class FavesProvider extends Component {
+
     constructor(props){
         super(props)
         this.state={
@@ -23,7 +24,7 @@ class FavesProvider extends Component {
         }
     }
 
-    addFaveSession = (sessionId) => {
+    addFaveSession = sessionId => {
         try {
             addFave(sessionId)
             this.getFavedSessionsIds()
@@ -32,10 +33,10 @@ class FavesProvider extends Component {
         }
     }
 
-    removeFaveSession = (sessionId) => {
+    removeFaveSession = sessionId => {
         try {
             removeFave(sessionId)
-            this.getFavedSessionIds()
+            this.getFavedSessionsIds()
         } catch (error) {
             console.log(error)
         }

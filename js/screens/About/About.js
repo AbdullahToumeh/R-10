@@ -23,7 +23,6 @@ const About = ({ aboutData }) => (
         <Text >{title} </Text>
         <Text >{description}</Text>
         </View>
-
       ))}
   </ScrollView>
 );
