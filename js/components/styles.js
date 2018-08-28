@@ -1,48 +1,46 @@
-import React, { Component } from 'react';
-import styles from './styles';
-import {Text, TouchableOpacity, LayoutAnimation, UIManager, Platform } from 'react-native';
 
-class AnimatedList extends Component {
+import { StyleSheet, Platform } from 'react-native';
+import { font, colors } from './../config/styles';
 
-    constructor(props) {
+export const styles = StyleSheet.create({
+    container:{
+        flexDirection: 'row',
+    },
+    symbol:{
+        color: colors.purple,
+        marginTop: 10,
+        marginLeft: 15,
+        fontWeight: 'bold',
+    },
+    title:{
+        color: colors.purple,
+        margin: 10,
+        fontSize: 18,
+        fontWeight: 'bold',
+        ...Platform.select({
+            android: {
+                fontFamily: font.android,
+            },
+            ios: {
+                fontFamily: font.ios
+            }            
+        }),
 
-        super(props);
-        this.state = {
-            opened: false
-        };
-        
-        if (Platform.OS === 'android') {
-            UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true)
-        }
+    },
+    text:{
+        margin: 10,
+        fontSize: 15,
+        fontWeight: '100',
+        ...Platform.select({
+            android: {
+                fontFamily: font.android,
+            },
+            ios: {
+                fontFamily: font.ios
+            }            
+        }),
 
-        this.showInfo = this.showInfo.bind(this)
     }
+})
 
-    componentWillUpdate() {
-        const config = {
-            duration: 750,
-            update: {
-                type: 'linear'
-            }
-        }
-
-        LayoutAnimation.configureNext(config)
-    }
-
-    showInfo() {
-        this.setState({
-            opened: !this.state.opened
-        })
-    }
-
-    render () {
-        
-    }
-
-
-
-
-}
-
-
-export default AnimatedList
+export default styles

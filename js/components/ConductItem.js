@@ -40,16 +40,15 @@ class ConductItem extends Component {
           }
 
         return (
-            <View >
+            <View  >
                 <TouchableOpacity onPress={this.onPress} >
-
-                    <Animated.Text >{this.state.isVisible ? '-' : '+'}</Animated.Text>
-                    <Text> {`${this.props.conduct.title}`} </Text>
+                    <View style={styles.container} >
+                        <Animated.Text style={styles.symbol} >{this.state.isVisible ? '-' : '+'}</Animated.Text>
+                        <Text style={styles.title} > {this.props.conduct.title} </Text>
+                    </View>
                 </TouchableOpacity>
 
-                {this.state.isVisible &&
-                    <Text >{this.props.conduct.description}</Text>
-                }
+                {this.state.isVisible && <Text style={styles.text} > {this.props.conduct.description} </Text> }
             </View>
         )
     }
