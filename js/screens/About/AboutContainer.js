@@ -27,10 +27,10 @@ export default class AboutContainer extends Component {
   render() {
     return (
       <Query query = { AboutData } >
-        {({ loading, error, data }) => {
+        {({ loading, error, data: {allConducts} }) => {
           if (loading) return <Text>Loading...</Text>;
           if (error) return <Text>Error </Text>;
-          return <About aboutData={data.allConducts} />
+          return <About conducts={allConducts} />
         }}
         </Query>
     )

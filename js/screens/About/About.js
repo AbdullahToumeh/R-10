@@ -1,7 +1,8 @@
 import React from "react";
 import { Text, View, ScrollView, Image } from "react-native";
+import ConductItem from "../../components/ConductItem";
 
-const About = ({ aboutData }) => (
+const About = conducts => (
   <ScrollView>
     <View>
       <Image source={require("../../assets/r10_logo.png")} />
@@ -18,12 +19,15 @@ const About = ({ aboutData }) => (
     </View>
     <Text>Code of Conduct</Text>
     
-      {aboutData.map(({title, description, id}) => (
+      {/* {aboutData.map(({title, description, id}) => (
         <View key={id}>
         <Text >{title} </Text>
         <Text >{description}</Text>
         </View>
-      ))}
+      ))} */}
+
+    {conducts.conducts.map(conduct => (<ConductItem conduct={conduct} key={conduct.id} /> ))}
+
   </ScrollView>
 );
 
