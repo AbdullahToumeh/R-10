@@ -3,8 +3,7 @@ import { Text, View, SectionList, TouchableOpacity, ScrollView, Image, Button } 
 import moment from 'moment';
 import Icon from "react-native-vector-icons/Ionicons";
 import styles from "./styles";
-
-
+import LinearGradient from 'react-native-linear-gradient';
 
 const Session = ({ navigation, session, faveIds }) => {
 
@@ -16,44 +15,57 @@ const Session = ({ navigation, session, faveIds }) => {
     return(
     <View>
         <ScrollView>
-            <View>
-                <Text>{sessionData.location}</Text>
-                { !favedSessions ? ( <Text /> ) : <Icon name='md-heart' size={20} color='red' /> }
+            <View style={styles.container}>
+                <Text style={styles.location} > {sessionData.location} </Text>
+                { !favedSessions ? ( <Text /> ) : <Icon name='md-heart' size={20} color='#cf392a' /> }
             </View>
-            <Text>{sessionData.title}</Text>
-            <Text>{moment(sessionData.starTime).format('h:mm a')}</Text>
-            <Text>{sessionData.description}</Text>
+            <Text style={styles.title} >{sessionData.title}</Text>
+            <Text style={styles.time} >{moment(sessionData.starTime).format('h:mm a')}</Text>
+            <Text style={styles.description} >{sessionData.description}</Text>
             {!sessionData.speaker ? (<Text />) : (
             <View>
-                <Text>Presented by:</Text>
+                <Text style={styles.presented}> Presented by: </Text>
                 <TouchableOpacity
                     onPress={() => {
                         navigation.navigate('Speaker', {speakerId: sessionData.speaker.id})
                     }} 
                 >
-                    <View>
+                    <View style={styles.presentContainer} >
                         {!sessionData.speaker.image ? ( <Text />) : (
                         <Image 
                             source={{ uri: sessionData.speaker.image }}
-                            style={{ height:100, width: 100 }}
+                            style={styles.image}
                         />)}
-                        <Text>{sessionData.speaker.name}</Text>
+                        <Text style={styles.name} >{sessionData.speaker.name}</Text>
                     </View>
 
                 </TouchableOpacity>
             </View>           
             )}
-
-            {!favedSessions ? (
-                <TouchableOpacity onPress= {() => {faveIds.addFave(sessionData.id)   }} >
-                    <Text> Add to Favs </Text>
-                </TouchableOpacity>
-                
-                ) : (
-                <TouchableOpacity onPress={() => {faveIds.removeFave(sessionData.id) }} >
-                    <Text> Remove from Favs </Text>
-                </TouchableOpacity>
-            )} 
+            <LinearGradient
+                colors={['#9963ea', '#8797D6']}
+                start={{ x: 0.0, y: 1.0 }}
+                end={{ x: 1.0, y: 0.0 }}
+                style={{
+                    height: 50,
+                    width: 'auto',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    borderRadius: 50,
+                    marginTop: 25
+                }}
+            >
+                {!favedSessions ? (
+                    <TouchableOpacity onPress= {() => {faveIds.addFave(sessionData.id) }} style={styles.button} >
+                        <Text style={styles.buttonText} > Add to Favs </Text>
+                    </TouchableOpacity>
+                    
+                    ) : (
+                    <TouchableOpacity onPress={() => {faveIds.removeFave(sessionData.id) }} style={styles.button} >
+                        <Text style={styles.buttonText} > Remove from Favs </Text>
+                    </TouchableOpacity>
+                )} 
+            </LinearGradient>
         </ScrollView>
     </View> 
     )
