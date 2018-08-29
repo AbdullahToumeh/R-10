@@ -4,6 +4,8 @@ import Session from "./Session";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import FavesContext from "../../context/FavesContext/FavesContext";
+import Loading from './../../components/Loading/Loading'
+
 
 const sessionData = gql`
   query($id: ID) {
@@ -41,7 +43,7 @@ export default class SessionContainer extends Component {
     return (
       <Query query={sessionData} variables={{ id: sessionId }}>
         {({ loading, error, data }) => {
-          if (loading) return <Text>Loading...</Text>;
+          if (loading) return <Loading />;
           if (error) return <Text>Error </Text>;
 
           return (

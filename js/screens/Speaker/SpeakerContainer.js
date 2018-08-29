@@ -3,6 +3,7 @@ import Speaker from './Speaker'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Text, View } from "react-native";
+import Loading from './../../components/Loading/Loading'
 
 
 
@@ -25,7 +26,7 @@ export default class SpeakerContainer extends Component {
     return (
       <Query query = {speakerData} variables={{id: speakerId}} >
         {({ loading, error, data }) => {
-          if (loading) return <Text>Loading...</Text>;
+          if (loading) return <Loading />;
           if (error) return <Text>Error </Text>;
           return <Speaker navigation={this.props.navigation} speaker={data} />
         }}

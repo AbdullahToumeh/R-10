@@ -4,6 +4,8 @@ import Faves from './Faves'
 import { Text } from 'react-native'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
+import Loading from './../../components/Loading/Loading'
+
 
 const favesData = gql`
     query {
@@ -45,7 +47,7 @@ export default class FavesContainer extends Component {
     return (
       <Query query={favesData} >
         {({ loading, error, data }) => {
-          if (loading) return <Text>Loading...</Text>;
+          if (loading) return <Loading />;
           if (error) return <Text>Error </Text>;
           return (
             <FavesContext.Consumer >

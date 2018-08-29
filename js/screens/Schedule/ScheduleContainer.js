@@ -4,6 +4,7 @@ import { Text } from 'react-native'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import FavesContext from '../../context/FavesContext/'
+import Loading from './../../components/Loading/Loading'
 
 const scheduleData = gql`
     query {
@@ -51,7 +52,7 @@ export default class ScheduleContainer extends Component {
     return (
       <Query query = { scheduleData } >
       {({ loading, error, data }) => {
-        if (loading) return <Text>Loading...</Text>;
+        if (loading) return <Loading/>;
         if (error) return <Text>Error </Text>;
         const newScheduleData = this.formatSessionData(data.allSessions)
         return (
