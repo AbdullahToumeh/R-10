@@ -51,7 +51,7 @@ export default class SessionContainer extends Component {
               {values => {
                 return (
                   <Session
-                    session={data}
+                    session={data.Session}
                     navigation={this.props.navigation}
                     sessionId={sessionId}
                     faveIds={values}

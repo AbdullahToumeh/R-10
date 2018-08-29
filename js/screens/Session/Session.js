@@ -4,10 +4,11 @@ import moment from 'moment';
 import Icon from "react-native-vector-icons/Ionicons";
 import styles from "./styles";
 import LinearGradient from 'react-native-linear-gradient';
+import PropTypes from "prop-types";
 
 const Session = ({ navigation, session, faveIds }) => {
 
-    const sessionData = session.Session
+    const sessionData = session
     const FavesIdArr = []
     faveIds.favesIds.map(item => FavesIdArr.push(item.id))
     const favedSessions = FavesIdArr.includes(sessionData.id)
@@ -72,6 +73,19 @@ const Session = ({ navigation, session, faveIds }) => {
    
 };
 
-
+Session.propTypes= {
+    session: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        location: PropTypes.string.isRequired,
+        startTime: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        speaker: PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            image: PropTypes.string.isRequired,
+        })
+    }).isRequired,
+    navigation: PropTypes.object.isRequired,
+    faveIds: PropTypes.object.isRequired
+}
 
 export default Session;

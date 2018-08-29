@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, ScrollView, Image } from "react-native";
 import ConductItem from "../../components/ConductItem";
 import  styles  from './styles';
+import PropTypes from "prop-types";
 
 const About = conducts => (
 
@@ -35,5 +36,15 @@ const About = conducts => (
 
   </ScrollView>
 );
+
+About.propTypes = {
+  conducts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    })
+  ).isRequired
+}
 
 export default About;

@@ -3,6 +3,7 @@ import About from './About';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Text} from 'react-native';
+import Loading from './../../components/Loading/Loading'
 
 const AboutData = gql`
     query {
@@ -28,7 +29,7 @@ export default class AboutContainer extends Component {
     return (
       <Query query = { AboutData } >
         {({ loading, error, data: {allConducts} }) => {
-          if (loading) return <Text>Loading...</Text>;
+          if (loading) return <Loading />;
           if (error) return <Text>Error </Text>;
           return <About conducts={allConducts} />
         }}

@@ -3,9 +3,10 @@ import { Text, View, SectionList, TouchableOpacity, ScrollView, Image, Button, L
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from "./styles";
 import LinearGradient from 'react-native-linear-gradient';
+import PropTypes from "prop-types";
 
 const Speaker = ({ navigation, speaker }) => {
-  const speakerData = speaker.Speaker
+  const speakerData = speaker
   return (
     <View style={styles.container} >
       <View style={styles.header}>
@@ -51,5 +52,15 @@ const Speaker = ({ navigation, speaker }) => {
     </View>
   );
 };
+
+Speaker.propTypes = {
+  speaker: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
+  }).isRequired,
+  navigation: PropTypes.object.isRequired
+}
 
 export default Speaker;

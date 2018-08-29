@@ -3,6 +3,8 @@ import { Text, View, ScrollView, SectionList, TouchableOpacity } from "react-nat
 import moment from 'moment';
 import Icon from "react-native-vector-icons/Ionicons";
 import styles from './styles';
+import PropTypes from "prop-types";
+
 
 const Faves = ({ sessions, navigation, faveIds}) => {
   return (
@@ -42,5 +44,15 @@ const Faves = ({ sessions, navigation, faveIds}) => {
     </ScrollView>
   );
 };
+
+Faves.propTypes = {
+  sessions: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  navigation: PropTypes.object.isRequired,
+  faveIds: PropTypes.array.isRequired
+}
 
 export default Faves;

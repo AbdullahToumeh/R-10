@@ -3,6 +3,7 @@ import { Text, View, SectionList, TouchableOpacity, ScrollView } from "react-nat
 import moment from 'moment';
 import Icon from "react-native-vector-icons/Ionicons";
 import styles from './styles';
+import PropTypes from "prop-types";
 
 const Schedule = ({ scheduleData, navigation, favesIds }) => (
   <SectionList
