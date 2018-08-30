@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
 
     },
     text:{
-        padding: 10,
+        paddingLeft: 10,
         fontSize: 15,
         fontWeight: '100',
         ...Platform.select({

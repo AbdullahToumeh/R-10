@@ -58,11 +58,9 @@ class ConductItem extends Component {
                 <Text style={styles.title}> {this.props.conduct.title} </Text>
               </View>
             </TouchableOpacity>
-        <Animated.View
-          style={{ height: this.state.animation }}
-        >
+        <Animated.View style={{ height: this.state.animation }} >
           <View style={styles.text} onLayout={this._setMaxHeight.bind(this)}>
-            <Text> {this.props.conduct.description} </Text>
+            <Text style={{overflow:'hidden'}}> {this.props.conduct.description} </Text>
           </View>
         </Animated.View>
       </View>
